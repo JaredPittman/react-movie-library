@@ -1,12 +1,19 @@
 import "./App.css";
-import Search from "./Components/search";
-import MovieList from "./Components/movieList";
+import MovieList from "./Components/MovieList";
+import Search from "./Components/Search";
+import { useState } from "react";
 
 function App() {
+  const [searchQuery, setSearchParam] = useState("");
+  const handleOnChange = (event) => {
+    // console.log(event.target.value);
+    setSearchParam(event.target.value);
+  };
+
   return (
     <div className="App">
-      <Search />
-      <MovieList />
+      <Search handleOnChange={handleOnChange} />
+      <MovieList searchQuery={searchQuery} />
     </div>
   );
 }

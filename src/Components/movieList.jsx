@@ -1,21 +1,30 @@
 import React from "react";
-import { useContext } from "react";
-import { GlobalContext } from "../GlobalContext";
+import { useQuery } from "react-query";
 
-const MovieList = () => {
-  const { movieList } = useContext(GlobalContext);
-  console.log(movieList);
+const MovieList = ({ searchQuery }) => {
+  const { data, isLoading, isError } = useQuery(
+    ["movieList", searchQuery],
+    () =>
+      fetch(`https://www.omdbapi.com/?s=${searchQuery}&apikey=748a81f9`).then(
+        (res) => res.json()
+      )
+  );
+
+  if (isLoading) return <div>Loading...</div>;
+  if (isError) return <div>Error, could not load movies.</div>;
+
+  const movies = data.Search;
+
   return (
     <div>
-      {movieList && movieList.length > 0
-        ? movieList.map((item) => (
-            <div key={item.Year}>
-              <img src={item.Poster} alt="Movie Poster" />
-              <p>{item.Title}</p>
-              <p>{item.Year}</p>
-            </div>
-          ))
-        : null}
+      {movies &&
+        movies.map((item) => (
+          <div key={`${item.Year}-${item.Title}`}>
+            <img src={item.Poster} alt="Movie Poster" />
+            <p>{item.Title}</p>
+            <p>{item.Year}</p>
+          </div>
+        ))}
     </div>
   );
 };
