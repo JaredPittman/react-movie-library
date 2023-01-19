@@ -1,7 +1,7 @@
 import { createContext, useState } from "react";
 
 export const GlobalContext = createContext({
-  searchParam: " ",
+  searchParam: "",
   handleOnChange: () => {},
   handleSubmit: () => {},
   movieList: [],
@@ -30,6 +30,7 @@ const GlobalState = ({ children }) => {
       setLoading(false);
     }
   };
+
   const contextValue = {
     searchParam,
     handleOnChange,

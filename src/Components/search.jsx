@@ -3,7 +3,7 @@ import { useContext } from "react";
 import { GlobalContext } from "../GlobalContext";
 
 const Search = () => {
-  const { searchParam, handleOnChange, handleSubmit, handleClear } =
+  const { searchParam, handleOnChange, handleSubmit } =
     useContext(GlobalContext);
 
   return (
@@ -15,7 +15,8 @@ const Search = () => {
         placeholder="Enter movie keyword here"
       />
       <button onClick={handleSubmit}>Search</button>
-      <span>Enter a year you wish to see the movies from!</span>
+      <br></br>
+      <p>Enter a year you wish to see the movies from!</p>
     </div>
   );
 };
