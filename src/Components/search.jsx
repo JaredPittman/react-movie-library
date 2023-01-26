@@ -1,23 +1,33 @@
 import React from "react";
 import { useContext } from "react";
 import { GlobalContext } from "../GlobalContext";
+import { Container, Button, Input } from "@chakra-ui/react";
 
 const Search = () => {
   const { searchParam, handleOnChange, handleSubmit } =
     useContext(GlobalContext);
 
   return (
-    <div>
-      <input
+    <Container>
+      <Input
+        borderRadius={15}
+        borderColor={"black"}
+        textColor={"green.600"}
+        fontWeight={"bold"}
         name="search"
         value={searchParam}
         onChange={handleOnChange}
-        placeholder="Enter movie keyword here"
+        placeholder="Enter a year you wish to see the movies from!"
       />
-      <button onClick={handleSubmit}>Search</button>
-      <br></br>
-      <p>Enter a year you wish to see the movies from!</p>
-    </div>
+      <Button
+        borderRadius={15}
+        backgroundColor={"blackAlpha.300"}
+        paddingLeft={15}
+        onClick={handleSubmit}
+      >
+        Search
+      </Button>
+    </Container>
   );
 };
 

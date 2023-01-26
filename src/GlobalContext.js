@@ -9,7 +9,7 @@ export const GlobalContext = createContext({
 });
 
 const GlobalState = ({ children }) => {
-  const [searchParam, setSearchParam] = useState(" ");
+  const [searchParam, setSearchParam] = useState("");
   const [movieList, setMovieList] = useState([]);
   const [loading, setLoading] = useState([]);
 
@@ -38,6 +38,7 @@ const GlobalState = ({ children }) => {
     movieList,
     loading,
   };
+
   return (
     <GlobalContext.Provider value={contextValue}>
       {children}
