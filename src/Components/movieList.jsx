@@ -2,7 +2,14 @@ import React from "react";
 import { useContext } from "react";
 import { GlobalContext } from "../GlobalContext";
 // import { inputAnatomy } from "@chakra-ui/anatomy";
-import { Text, Image, Container, SimpleGrid, Box } from "@chakra-ui/react";
+import {
+  Text,
+  Image,
+  Container,
+  SimpleGrid,
+  Box,
+  GridItem,
+} from "@chakra-ui/react";
 
 const MovieList = () => {
   const { movieList } = useContext(GlobalContext);
@@ -18,7 +25,7 @@ const MovieList = () => {
               p="10px"
               spacing={"10"}
             >
-              <Box
+              <GridItem
                 b="100%"
                 h="100%"
                 key={item.Year}
@@ -38,7 +45,7 @@ const MovieList = () => {
                   <Text>{item.Title}</Text>
                   <Text>{item.Year}</Text>
                 </Container>
-              </Box>
+              </GridItem>
             </SimpleGrid>
           ))
         : null}
