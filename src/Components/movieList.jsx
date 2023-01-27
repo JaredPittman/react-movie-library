@@ -1,15 +1,17 @@
 import React from "react";
 import { useContext } from "react";
 import { GlobalContext } from "../GlobalContext";
-// import { inputAnatomy } from "@chakra-ui/anatomy";
 import {
-  Text,
-  Image,
+  Table,
   Container,
-  SimpleGrid,
-  Box,
-  GridItem,
+  TableContainer,
+  Thead,
+  Tr,
+  Tbody,
+  Th,
+  Td,
 } from "@chakra-ui/react";
+// import { inputAnatomy } from "@chakra-ui/anatomy";
 
 const MovieList = () => {
   const { movieList } = useContext(GlobalContext);
@@ -18,35 +20,22 @@ const MovieList = () => {
     <Container>
       {movieList && movieList.length > 0
         ? movieList.map((item) => (
-            <SimpleGrid
-              templateColumns="repeat(3, 1fr)"
-              templateRows="repeat(1 ,1fr)"
-              gap="2"
-              p="10px"
-              spacing={"10"}
-            >
-              <GridItem
-                b="100%"
-                h="100%"
-                key={item.Year}
-                bgColor={"gray.400"}
-                borderRadius={"15"}
-                colSpan={1}
-                rowSpan={1}
-              >
-                <Container>
-                  <Image
-                    p={"10px"}
-                    src={item.Poster}
-                    alt="Missing Movie Poster"
-                    fontWeight={"bold"}
-                    color={"red"}
-                  />
-                  <Text>{item.Title}</Text>
-                  <Text>{item.Year}</Text>
-                </Container>
-              </GridItem>
-            </SimpleGrid>
+            <TableContainer>
+              <Table variant="striped" colorScheme="green.200">
+                <Thead>
+                  <Tr>
+                    <Th>Title</Th>
+                    <Th>Year</Th>
+                  </Tr>
+                </Thead>
+                <Tbody>
+                  <Tr key={item.Year}>
+                    <Td>{item.Title}</Td>
+                    <Td>{item.Year}</Td>
+                  </Tr>
+                </Tbody>
+              </Table>
+            </TableContainer>
           ))
         : null}
     </Container>
